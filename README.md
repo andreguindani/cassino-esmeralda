@@ -4,7 +4,7 @@ Cassino simulado em uma única página HTML, com fichas fictícias. Nenhum dinhe
 
 ## Como abrir
 
-Baixe o `index.html` e abra no navegador. Não precisa de servidor nem de instalação. Para publicar online, ative o GitHub Pages neste repositório apontando para a branch `main`.
+Baixe o `index.html` e abra no navegador. Não precisa de servidor nem de instalação. Funciona no computador, no tablet e no celular (testado de 320px a 1280px de largura). Para publicar online, ative o GitHub Pages neste repositório apontando para a branch `main`.
 
 ## Jogos
 

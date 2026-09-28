@@ -61,7 +61,7 @@ body{
 }
 button{font:inherit; color:inherit; touch-action:manipulation}
 :focus-visible{outline:2px solid var(--brass-hi); outline-offset:2px}
-.wrap{max-width:1132px; margin:0 auto; padding-inline:16px; padding-block:28px 8px; display:grid; gap:22px}
+.wrap{max-width:1132px; margin:0 auto; padding-inline:16px; padding-block:28px 8px; display:grid; grid-template-columns:minmax(0, 1fr); gap:22px}
 .label{font-size:11px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
 .fine{margin:0; font-size:12.5px; line-height:1.55; color:var(--muted); max-width:66ch}
 .note{margin:0; font-size:15px; min-height:1.5em; color:var(--ivory); text-wrap:pretty}
@@ -95,14 +95,16 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 .purse-num{font:500 17px/1 var(--mono); font-variant-numeric:tabular-nums; color:var(--text); min-width:3ch; text-align:right}
 .purse-num.up{animation:glow .9s ease}
 .purse-num.shake{animation:shake .35s ease}
-.cash{min-height:30px; height:30px; padding:0 12px; font-size:13px; border-radius:8px}
+.btn.cash{min-height:30px; height:30px; padding:0 12px; font-size:13px; border-radius:8px}
+.cash .plus{display:none; font:700 18px/1 var(--body)}
 .avatar{font:700 14px/1 var(--body); color:var(--yellow); background:linear-gradient(135deg, #2E2410, #16120A); border-color:rgba(246,195,67,.45)}
 @keyframes glow{0%{color:var(--yellow); text-shadow:0 0 18px rgba(246,195,67,.8)} 100%{color:var(--text); text-shadow:none}}
 @keyframes shake{25%{transform:translateX(-5px)} 50%{transform:translateX(5px)} 75%{transform:translateX(-3px)}}
 .mini-btn{appearance:none; cursor:pointer; font:500 12.5px/1 var(--body); padding:8px 12px; border-radius:999px; border:1px solid rgba(246,195,67,.5); background:rgba(0,0,0,.2); color:var(--yellow)}
-@media (max-width:1000px){ .top-tabs{display:none} }
-@media (max-width:640px){ .topbar{gap:7px; padding:0 10px} .logo .lw, .tb-hide{display:none} .logo{font-size:19px} .balance-pill .label, .cash .long{display:none} .balance-pill{padding-left:10px; gap:8px} }
-@media (max-width:400px){ #searchBtn{display:none} }
+@media (max-width:1000px){ .top-tabs, .tb-hide{display:none} }
+@media (max-width:640px){ .topbar{gap:7px; padding:0 10px} .logo .lw, .tb-hide{display:none} .logo{font-size:18px; gap:7px} .logo svg{width:24px; height:24px} .balance-pill .label, .cash .long{display:none} .balance-pill{padding-left:10px; gap:8px} }
+@media (max-width:480px){ #cardChip, #searchBtn{display:none} .cash .amt{display:none} .cash .plus{display:inline} .btn.cash{width:32px; padding:0} .purse-num{font-size:15px} .icon-btn{width:38px; height:38px} }
+@media (max-width:340px){ .logo > span{display:none} }
 
 /* ---------- shell & sidebar ---------- */
 .shell{display:grid; grid-template-columns:var(--sbw) minmax(0, 1fr); align-items:start}
@@ -140,7 +142,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 }
 
 /* ---------- home: banners ---------- */
-.home{display:grid; gap:18px}
+.home{display:grid; grid-template-columns:minmax(0, 1fr); gap:18px}
 .carousel{position:relative; overflow:hidden; border-radius:18px; background:#0E0E11; border:1px solid var(--line); isolation:isolate; touch-action:pan-y}
 .slides{position:relative; height:clamp(320px, 30vw, 380px)}
 .slide{position:absolute; inset:0; opacity:0; visibility:hidden; transition:opacity .7s ease, visibility 0s linear .7s}
@@ -633,7 +635,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 .vm[data-m="neon"]{--cab1:#3B0F5C; --cab2:#12061F; --scr:#0A0414; --cellbg:#1A0B2E; --acc:#3EF2F2}
 .vm[data-m="neon"] .vm-cab{box-shadow:inset 0 2px 0 rgba(255,255,255,.14), 0 0 26px rgba(62,242,242,.35), 0 0 60px rgba(233,69,160,.25)}
 .vm[data-m="neon"] .vm-name{text-shadow:0 0 12px rgba(62,242,242,.8)}
-.orig{display:grid; gap:16px}
+.orig{display:grid; grid-template-columns:minmax(0, 1fr); gap:16px}
 .ohead{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:10px 20px}
 .ohead h2{margin:0; font:700 clamp(24px, 3vw, 30px)/1.1 var(--body)}
 .ohead p{margin:6px 0 0; color:var(--text-2); font-size:14px}
@@ -760,7 +762,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 @keyframes jump{0%,100%{translate:0 0} 40%{translate:0 -110px}}
 /* sic bo */
 .sb-tray{display:flex; justify-content:center; gap:14px; margin:4px 0 16px}
-.sb-top{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px}
+.sb-top{display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px}
 .sb-totals{display:grid; grid-template-columns:repeat(7, minmax(0, 1fr)); gap:8px; margin-top:10px}
 .sb-singles{display:grid; grid-template-columns:repeat(6, minmax(0, 1fr)); gap:8px; margin-top:10px}
 .sb-totals .bbox, .sb-singles .bbox{min-height:78px; padding:8px 4px 6px}
@@ -825,7 +827,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 .card.down{background:repeating-linear-gradient(45deg, #8A1D26 0 5px, #5E1017 5px 10px); border:4px solid #FBF6EC}
 
 /* ---------- blackjack ---------- */
-.bj{display:grid; justify-items:center; gap:14px; text-align:center}
+.bj{display:grid; grid-template-columns:minmax(0, 1fr); justify-items:center; gap:14px; text-align:center}
 .bj > .thead{justify-self:stretch; margin-bottom:0}
 .arc{display:block; width:min(560px, 100%); height:auto}
 .bj-msg{font-size:17px; font-weight:500}
@@ -987,6 +989,73 @@ button{font:inherit; color:inherit; touch-action:manipulation}
 
 .foot{padding-top:6px}
 .foot .fine{max-width:80ch}
+
+/* ---------- phones ---------- */
+.vp-slot .card{min-width:0; max-width:100%; align-self:start}
+.vp-slot{grid-template-columns:minmax(0, 1fr)}
+@media (max-width:820px){
+  .og-stage{min-height:0; padding:14px}
+  #fogueteStage{height:300px}
+  #pinosStage{height:390px}
+  #limboStage{min-height:230px}
+  #duploStage{padding:16px 0}
+  .ohead{align-items:center}
+  .og-panel{padding:14px; gap:12px}
+}
+@media (max-width:560px){
+  .mpicker{display:flex; overflow-x:auto; gap:8px; padding:2px 0 8px; scroll-snap-type:x proximity; scrollbar-width:none}
+  .mpicker::-webkit-scrollbar{display:none}
+  .mpick{flex:none; width:150px; scroll-snap-align:start; padding:10px}
+  .mp-spec{display:none}
+  .mp-art svg{width:26px; height:26px}
+  .mp-name{font-size:15px}
+  .vp-pay td:not(:first-child):not(.col), .vp-pay th:not(:first-child):not(.col){display:none}
+  .vp-pay td:first-child{font-size:11.5px; white-space:normal}
+  .vp-pay-wrap{overflow-x:visible}
+  .ke-grid{grid-template-columns:repeat(5, minmax(0, 1fr)); gap:8px}
+  .lobby{grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px}
+  .gart{height:108px}
+  .gart > *{scale:.74}
+  .gbody{padding:10px 10px 12px; gap:8px}
+  .gbody h3{font-size:14.5px}
+  .gbody p, .gfacts{display:none}
+  .gbody .btn{min-height:36px; padding:8px 10px; font-size:13.5px}
+  .lobby-head h2{font-size:19px}
+  .cat{height:32px; padding:0 12px}
+  .ke-n{font-size:16px}
+  .rd-extra{display:none}
+  .rd-board .bbox{min-height:84px}
+  .sb-top .bbox, .sb-singles .bbox{min-height:84px}
+  .table{border-radius:18px}
+  .thead{margin-bottom:16px}
+  .placard b{font-size:12.5px}
+  .ctl-row .btn.ghost{flex:1 1 auto}
+  .dt-side{--cw:84px; --ch:118px; padding:14px 6px}
+  .dt-side h3{font-size:21px}
+  .dt-table{gap:8px}
+  .hl-main{--cw:96px; --ch:136px; gap:16px}
+  .hl-mult{font-size:32px}
+  .coin{width:140px; height:140px}
+  .rack{padding-top:10px}
+  .toast{bottom:calc(88px + env(safe-area-inset-bottom, 0px))}
+}
+.bbox{min-width:0; overflow-wrap:anywhere}
+.logo{min-width:0; flex:0 1 auto}
+.logo > span{min-width:0; overflow:hidden; text-overflow:ellipsis}
+.vm-info{min-width:0}
+@media (max-width:420px){
+  .vm-info .symc{font-size:0; gap:0}
+  .vm-info .pt td, .vm-info .pt th{padding:6px 3px}
+  .vm-info .pt td small{font-size:10px}
+  .bbox b{letter-spacing:.06em}
+  .sb-top .bbox b{font-size:12px}
+}
+@media (max-width:380px){
+  .logo{font-size:16px}
+  .chip{width:42px; font-size:11px}
+  .chips{gap:6px}
+  .sound{padding:8px}
+}
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important}
@@ -1183,7 +1252,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
   <button type="button" class="icon-btn tb-hide" data-go="ajuda" aria-label="Central de ajuda"><svg aria-hidden="true"><use href="#i-chat"></use></svg></button>
   <div class="balance-pill">
     <span class="label">Fichas</span><b class="purse-num" id="balance">1.000</b>
-    <button type="button" class="btn primary cash" id="reloadBtn"><span class="long">Caixa </span>+1.000</button>
+    <button type="button" class="btn primary cash" id="reloadBtn" aria-label="Caixa: mais 1.000 fichas"><span class="long">Caixa </span><span class="amt">+1.000</span><span class="plus" aria-hidden="true">+</span></button>
   </div>
   <button type="button" class="icon-btn avatar" id="cardChip" data-go="clube" aria-label="Clube Esmeralda">B</button>
 </header>
@@ -1703,7 +1772,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
     <div class="vp">
       <div class="vp-pay-wrap">
         <table class="vp-pay">
-          <thead><tr><th>Mão</th><th>1 créd.</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+          <thead><tr id="vpHead"><th>Mão</th><th>1 créd.</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
           <tbody id="vpPay"></tbody>
         </table>
       </div>
@@ -3711,6 +3780,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
   function renderVPPay(hit) {
     $('#vpPay').innerHTML = VP_ROWS.map(([k, name, pays]) =>
       `<tr class="${k === hit ? 'hit' : ''}"><td>${name}</td>${pays.map((p, i) => `<td class="${i + 1 === VP.credits ? 'col' : ''}">${fmt(p)}</td>`).join('')}</tr>`).join('');
+    $$('#vpHead th').forEach((th, i) => th.classList.toggle('col', i === VP.credits));
   }
   function vpReadouts() {
     const unit = VP.state === 'idle' ? S.chip : VP.unit;
@@ -3914,7 +3984,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
   $('#miniSix').style.background = `conic-gradient(from ${-(180 / 54).toFixed(3)}deg, ${RD_SEGS.map((k, i) => `${RD_KINDS[k].bg} ${(i * 360 / 54).toFixed(3)}deg ${((i + 1) * 360 / 54).toFixed(3)}deg`).join(', ')})`;
   rdBoard.innerHTML = RD_ORDER.map(k => {
     const x = RD_KINDS[k], word = k === 'cur' || k === 'esm';
-    return `<button type="button" class="bbox" data-key="${k}" style="--seg:${x.bg}; --segfg:${x.fg}" aria-label="${x.name}, paga ${x.pay} para 1"><span class="rd-face">${x.label}</span><small>${word ? x.name + '<br>' : ''}paga ${x.pay}:1<br>${x.n} de 54 · vantagem ${x.edge}</small><span class="mk"></span></button>`;
+    return `<button type="button" class="bbox" data-key="${k}" style="--seg:${x.bg}; --segfg:${x.fg}" aria-label="${x.name}, paga ${x.pay} para 1"><span class="rd-face">${x.label}</span><small>${word ? x.name + '<br>' : ''}paga ${x.pay}:1<span class="rd-extra"><br>${x.n} de 54 · vantagem ${x.edge}</span></small><span class="mk"></span></button>`;
   }).join('');
   const rdBoxes = $$('.bbox', rdBoard);
   function renderRd() {
@@ -4259,12 +4329,12 @@ button{font:inherit; color:inherit; touch-action:manipulation}
     <p class="note" id="sbMsg" aria-live="polite">Escolha uma ficha na bandeja e toque nas casas. Depois lance os três dados.</p>
     <div id="sbBoard">
       <div class="sb-top">
-        <button type="button" class="bbox" data-key="small"><b>Pequeno</b><small>Soma 4 a 10 · paga 1:1 · perde na trinca</small><span class="mk"></span></button>
-        <button type="button" class="bbox prop" data-key="triple"><b>Qualquer trinca</b><small>Três dados iguais · paga 30:1</small><span class="mk"></span></button>
-        <button type="button" class="bbox" data-key="big"><b>Grande</b><small>Soma 11 a 17 · paga 1:1 · perde na trinca</small><span class="mk"></span></button>
+        <button type="button" class="bbox" data-key="small"><b>Pequeno</b><small>Soma 4 a 10 · 1:1</small><span class="mk"></span></button>
+        <button type="button" class="bbox prop" data-key="triple"><b>Qualquer trinca</b><small>Dados iguais · 30:1</small><span class="mk"></span></button>
+        <button type="button" class="bbox" data-key="big"><b>Grande</b><small>Soma 11 a 17 · 1:1</small><span class="mk"></span></button>
       </div>
       <div class="sb-totals">${Object.keys(SB_TP).map(t => `<button type="button" class="bbox" data-key="t${t}" aria-label="Soma ${t}, paga ${SB_TP[t]} para 1"><b>${t}</b><small>${SB_TP[t]}:1</small><span class="mk"></span></button>`).join('')}</div>
-      <div class="sb-singles">${[1, 2, 3, 4, 5, 6].map(n => `<button type="button" class="bbox" data-key="n${n}" aria-label="Número ${n}"><span class="mini-die">${pip9(n)}</span><small>1 dado 1:1 · 2 dados 2:1 · 3 dados 3:1</small><span class="mk"></span></button>`).join('')}</div>
+      <div class="sb-singles">${[1, 2, 3, 4, 5, 6].map(n => `<button type="button" class="bbox" data-key="n${n}" aria-label="Número ${n}"><span class="mini-die">${pip9(n)}</span><small>1:1 a 3:1</small><span class="mk"></span></button>`).join('')}</div>
     </div>
     <div class="ctl-row">
       <div class="onboard"><span class="label">Na mesa</span><b id="sbTotal">0</b></div>
@@ -4273,7 +4343,7 @@ button{font:inherit; color:inherit; touch-action:manipulation}
       <button type="button" class="btn primary" id="sbRoll">Lançar dados</button>
     </div>
     <div style="margin-top:18px"><div class="label">Últimos lançamentos</div><div class="history" id="sbHist"></div></div>
-    <p class="fine" style="margin-top:14px">Pequeno e Grande devolvem 97,2%. Números simples, 92,1%. Somas, de 81% a 90%. Qualquer trinca, 86,1%.</p>
+    <p class="fine" style="margin-top:14px">Pequeno e Grande perdem quando sai trinca e devolvem 97,2%. Cada número simples paga 1:1 por dado que mostrar o número (até 3:1). Números simples, 92,1%. Somas, de 81% a 90%. Qualquer trinca, 86,1%.</p>
   </section>`;
   $('#ajuda').insertAdjacentHTML('beforebegin', ORIG.map(o => `<section id="${o.id}" class="game orig" hidden>
       <header class="ohead"><div><h2>${o.title}</h2><p>${o.sub}</p></div><span class="rtp">${o.rtp}</span></header>
